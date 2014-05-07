@@ -45,6 +45,8 @@ namespace Uno8.Emulator
 			(byte)0xf0, (byte)0x80, (byte)0xf0, (byte)0x80, (byte)0x80, // f
 		};
 		
+		readonly Gpu _gpu = new Gpu();
+		
 		readonly byte[] _regs = new byte[16];
 		readonly byte[] _ram = new byte[4096];
 		readonly Stack<ushort> _stack = new Stack<ushort>(16);
@@ -78,7 +80,8 @@ namespace Uno8.Emulator
 				_ram[i] = _charMem[i];
 			for (int i = 0; i < 16; i++)
 				_inputs[i] = false;
-			// TODO: Reset gpu (and dummy update? wonder what that was for..)
+			_gpu.Clear();
+			// TODO: _gpu.Update()?
 			for (int i = 0; i < Game.Data.Length; i++)
 				_ram[i + 0x200] = Game.Data[i];
 			_isWaitingForKeypress = false;
@@ -95,7 +98,7 @@ namespace Uno8.Emulator
 					{
 						if (GetInput(j))
 						{
-							regs[keyPressReg] = j;
+							_regs[keyPressReg] = (byte)j;
 							_isWaitingForKeypress = false;
 							break;
 						}
@@ -105,8 +108,8 @@ namespace Uno8.Emulator
 				
 				if (_pc >= 4095)
 					throw new Exception("PC out of bounds");
-				var opcode = (ushort)((_ram[pc] << 8) | _ram[pc + 1]);
-				pc += 2;
+				var opcode = (ushort)((_ram[_pc] << 8) | _ram[_pc + 1]);
+				_pc = (ushort)(_pc + 2);
 				
 				int h = (opcode >> 12) & 0x0f;
 				int x = (opcode >> 8) & 0x0f;
@@ -130,7 +133,7 @@ namespace Uno8.Emulator
 						else if (opcode == 0x00ee)
 						{
 							// RET
-							pc = stack->Pop();
+							_pc = _stack.Pop();
 						}
 						else
 						{
@@ -140,25 +143,25 @@ namespace Uno8.Emulator
 						
 					case 1:
 						// JP addr
-						_pc = nnn;
+						_pc = (ushort)nnn;
 						break;
 
 					case 2:
 						// CALL addr
 						_stack.Push(_pc);
-						_pc = nnn;
+						_pc = (ushort)nnn;
 						break;
 
 					case 3:
 						// SE Vx, byte
 						if (_regs[x] == nn)
-							_pc += 2;
+							_pc = (ushort)(_pc + 2);
 						break;
 
 					case 4:
 						// SNE Vx, byte
 						if (_regs[x] != nn)
-							_pc += 2;
+							_pc = (ushort)(_pc + 2);
 						break;
 
 					case 5:
@@ -167,17 +170,17 @@ namespace Uno8.Emulator
 
 						// SE Vx, Vy
 						if (_regs[x] == _regs[y])
-							_pc += 2;
+							_pc = (ushort)(_pc + 2);
 						break;
 
 					case 6:
 						// LD Vx, byte
-						_regs[x] = nn;
+						_regs[x] = (byte)nn;
 						break;
 
 					case 7:
 						// ADD Vx, byte
-						_regs[x] += nn;
+						_regs[x] = (byte)(_regs[x] + nn);
 						break;
 
 					case 8:
@@ -190,25 +193,25 @@ namespace Uno8.Emulator
 
 						case 1:
 							// OR Vx, Vy
-							_regs[x] |= _regs[y];
+							_regs[x] = (byte)(_regs[x] | _regs[y]);
 							break;
 
 						case 2:
 							// AND Vx, Vy
-							_regs[x] &= _regs[y];
+							_regs[x] = (byte)(_regs[x] & _regs[y]);
 							break;
 
 						case 3:
 							// XOR Vx, Vy
-							_regs[x] ^= _regs[y];
+							_regs[x] = (byte)(_regs[x] ^ _regs[y]);
 							break;
 
 						case 4:
 							{
 								// ADD Vx, Vy
 								int result = _regs[x] + _regs[y];
-								_regs[15] = result > 255 ? 1 : 0;
-								_regs[x] = result;
+								_regs[15] = (byte)(result > 255 ? 1 : 0);
+								_regs[x] = (byte)result;
 							}
 							break;
 
@@ -361,6 +364,8 @@ namespace Uno8.Emulator
 						InvalidOpcode();
 				}
 			}
+			
+			_gpu.Update();
 		}
 		
 		public bool GetInput(int index)
