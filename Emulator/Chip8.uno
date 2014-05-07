@@ -217,26 +217,26 @@ namespace Uno8.Emulator
 
 						case 5:
 							// SUB Vx, Vy
-							_regs[15] = _regs[x] < _regs[y] ? 0 : 1;
-							_regs[x] -= _regs[y];
+							_regs[15] = (byte)(_regs[x] < _regs[y] ? 0 : 1);
+							_regs[x] = (byte)(_regs[x] - _regs[y]);
 							break;
 
 						case 6:
 							// SHR Vx
-							_regs[15] = _regs[x] & 1;
-							_regs[x] >>= 1;
+							_regs[15] = (byte)(_regs[x] & 1);
+							_regs[x] = (byte)(_regs[x] >> 1);
 							break;
 
 						case 7:
 							// SUBN Vx, Vy
-							_regs[15] = _regs[y] < _regs[x] ? 0 : 1;
-							_regs[x] = _regs[y] - _regs[x];
+							_regs[15] = (byte)(_regs[y] < _regs[x] ? 0 : 1);
+							_regs[x] = (byte)(_regs[y] - _regs[x]);
 							break;
 
 						case 0xe:
 							// SHL Vx
-							_regs[15] = (_regs[x] >> 7) & 1;
-							_regs[x] <<= 1;
+							_regs[15] = (byte)((_regs[x] >> 7) & 1);
+							_regs[x] = (byte)(_regs[x] << 1);
 							break;
 
 						default:
@@ -247,7 +247,7 @@ namespace Uno8.Emulator
 					case 9:
 						// SNE Vx, Vy
 						if (_regs[x] != _regs[y])
-							_pc += 2;
+							_pc = (ushort)(_pc + 2);
 						break;
 
 					case 0xa:
