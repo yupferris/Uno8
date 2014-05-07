@@ -241,6 +241,7 @@ namespace Uno8.Emulator
 
 						default:
 							InvalidOpcode();
+							break;
 						}
 						break;
 
@@ -252,22 +253,22 @@ namespace Uno8.Emulator
 
 					case 0xa:
 						// LD i, addr
-						_iReg = nnn;
+						_iReg = (ushort)nnn;
 						break;
 
 					case 0xb:
 						// JP V0, addr
-						_pc = nnn + _regs[0];
+						_pc = (ushort)(nnn + _regs[0]);
 						break;
 
 					case 0xc:
 						// RND Vx, byte
-						_regs[x] = _random.GetNextInt() & nn;
+						_regs[x] = (byte)(_random.NextInt() & nn);
 						break;
 
 					case 0xd:
 						// DRW Vx, Vy, nibble
-						_regs[15] = _gpu.DrawSprite(_regs[x], _regs[y], ram + _iReg, n);
+						_regs[15] = (byte)_gpu.DrawSprite(_regs[x], _regs[y], _ram, _iReg, n);
 						break;
 
 					case 0xe:
@@ -275,13 +276,13 @@ namespace Uno8.Emulator
 						{
 							// SKP Vx
 							if (GetInput(_regs[x]))
-								pc += 2;
+								_pc = (ushort)(_pc + 2);
 						}
 						else if (nn == 0xa1)
 						{
 							// SKNP Vx
 							if (!GetInput(_regs[x]))
-								pc += 2;
+								_pc = (ushort)(_pc + 2);
 						}
 						else
 						{
@@ -309,59 +310,60 @@ namespace Uno8.Emulator
 							break;
 
 						case 0x18:
-							// LD ST, Vx
-							_timerSound = _regs[x];
+							// LD ST, Vx (ignored)
 							break;
 
 						case 0x1e:
 							{
 								// ADD I, Vx
 								var result = _iReg + _regs[x];
-								_regs[15] = result > 0xfff ? 1 : 0;
-								_iReg = result & 0xfff;
+								_regs[15] = (byte)(result > 0xfff ? 1 : 0);
+								_iReg = (ushort)(result & 0xfff);
 							}
 							break;
 
 						case 0x29:
 							// LD F, Vx
-							_iReg = _regs[x] * 5;
+							_iReg = (ushort)(_regs[x] * 5);
 							break;
 
 						case 0x33:
 							{
 								// LD B, Vx
 								var c = _regs[x];
-								_ram[(_iReg + 2) & 0xfff] = c % 10;
-								_ram[(_iReg + 1) & 0xfff] = (c / 10) % 10;
-								_ram[_iReg] = (c / 100) % 10;
+								_ram[(_iReg + 2) & 0xfff] = (byte)(c % 10);
+								_ram[(_iReg + 1) & 0xfff] = (byte)((c / 10) % 10);
+								_ram[_iReg] = (byte)((c / 100) % 10);
 							}
 							break;
 
 						case 0x55:
 							{
 								// LD [I], Vx
-								for (int i = 0; i <= x; i++)
-									ram[(_iReg + i) & 0xfff] = _regs[i];
-								_iReg = (_iReg + x + 1) & 0xfff;
+								for (int j = 0; j <= x; j++)
+									_ram[(_iReg + j) & 0xfff] = _regs[j];
+								_iReg = (ushort)((_iReg + x + 1) & 0xfff);
 							}
 							break;
 
 						case 0x65:
 							{
 								// LD Vx, [I]
-								for (int i = 0; i <= x; i++)
-									_regs[i] = _ram[(_iReg + i) & 0xfff];
-								_iReg = (_iReg + x + 1) & 0xfff;
+								for (int j = 0; j <= x; j++)
+									_regs[j] = _ram[(_iReg + i) & 0xfff];
+								_iReg = (ushort)((_iReg + x + 1) & 0xfff);
 							}
 							break;
 
 						default:
 							InvalidOpcode();
+							break;
 						}
 						break;
 
 					default:
 						InvalidOpcode();
+						break;
 				}
 			}
 			
