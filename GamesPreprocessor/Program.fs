@@ -108,7 +108,7 @@ let main argv =
                             | n when n < x.Data.Length ->
                                 "(byte)0x" + x.Data.[n].ToString("x2") + "," +
                                     match i with
-                                    | n when i <> lineLength - 1 -> " "
+                                    | _ when n <> x.Data.Length - 1 && i <> lineLength - 1 -> " "
                                     | _ -> ""
                             | _ -> ""|])
 
