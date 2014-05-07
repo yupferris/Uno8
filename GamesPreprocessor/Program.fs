@@ -45,7 +45,7 @@ let main argv =
             let getInfo s =
                 let title = getTitle s
                 match Array.tryFind (fun (x : string) -> x.Contains title) infoFileNames with
-                | Some x -> Some ((File.ReadAllText x).Replace("\n", "\\n").Replace("\r", ""))
+                | Some x -> Some ((File.ReadAllText x).Replace("\n", "\\n").Replace("\r", "").Replace("\"", "\\\""))
                 | _ -> None
 
             {
