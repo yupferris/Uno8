@@ -17,6 +17,7 @@
     <SourceFile Path="EmulatorHost.uno" />
     <SourceFile Path="Game.uno" />
     <SourceFile Path="Games.uno" />
+    <SourceFile Path="Keypad.uno" />
     <SourceFile Path="MainView.ux.uno" />
     <StartupFile Path="MainView.ux" />
   </Files>

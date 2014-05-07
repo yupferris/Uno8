@@ -4,8 +4,9 @@
       <DecoratedViewport DecoratorType="IPhone" />
     </Window>
   </ViewportLayout>
-  <Node RefId="this" PanX="100" PanY="100" RootX="-26" RootY="0" Default="StackPanel1.Children">
-    <Node RefId="AppStyle1" X="174.5" Y="45" />
-    <Node RefId="StackPanel1" X="179" Y="-44" />
+  <Node RefId="this" PanX="92" PanY="75" RootX="-26" RootY="0" Default="StackPanel1.Children">
+    <Node RefId="AppStyle1" X="117.5" Y="36" />
+    <Node RefId="StackPanel1" X="117" Y="-18" />
+    <Node RefId="Keypad1" X="276" Y="-14.5" />
   </Node>
 </Layouts>

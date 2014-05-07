@@ -33,9 +33,11 @@ public partial class MainView
 	
 	protected override void OnDraw()
 	{
-		base.OnDraw();
+		Context.Clear(float4(0, 0, 0, 1), 1);
 		
 		_host.Draw();
+		
+		base.OnDraw();
 	}
 	
 	void WindowKeyDown(object sender, Uno.Platform.KeyEventArgs args)
