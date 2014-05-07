@@ -76,7 +76,7 @@ let main argv =
             indent := !indent - 1
             line s
 
-        line "using Uno.Collections"
+        line "using Uno.Collections;"
         line ""
         line "namespace Uno8"
         push "{"

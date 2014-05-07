@@ -1,4 +1,4 @@
-using Uno.Collections
+using Uno.Collections;
 
 namespace Uno8
 {
