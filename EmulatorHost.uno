@@ -11,10 +11,11 @@ namespace Uno8
 	public class EmulatorHost
 	{
 		readonly Chip8 _chip8;
+		public Chip8 Chip8 { get { return _chip8; } }
 		
-		public EmulatorHost(Chip8 chip8)
+		public EmulatorHost()
 		{
-			_chip8 = chip8;
+			_chip8 = new Chip8(Games.Get("15 Puzzle"));
 		}
 		
 		public void Update()

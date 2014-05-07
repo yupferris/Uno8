@@ -37,15 +37,15 @@ namespace Uno8
 			
 			void SetInput(bool value)
 			{
-				var chip8 = _keypad.Chip8;
-				if (chip8 == null)
+				var host = _keypad.EmulatorHost;
+				if (host == null)
 					return;
 				
-				chip8.SetInput(_index, value);
+				host.Chip8.SetInput(_index, value);
 			}
 		}
 		
-		public Chip8 Chip8 { get; set; }
+		public EmulatorHost EmulatorHost { get; set; }
 		
 		public Keypad()
 		{

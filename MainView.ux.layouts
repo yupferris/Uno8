@@ -6,8 +6,9 @@
   </ViewportLayout>
   <Node RefId="this" PanX="92" PanY="75" RootX="-26" RootY="0" Default="DockPanel1.Children">
     <Node RefId="AppStyle1" X="119.5" Y="36" />
-    <Node RefId="Keypad1" X="295" Y="-10.5" />
+    <Node RefId="Keypad1" X="282" Y="-9.5" />
     <Node RefId="DockPanel1" X="119" Y="-29.5" />
     <Node RefId="Button1" X="281" Y="-42.5" />
+    <Node RefId="EmulatorHost1" X="528" Y="18.5" />
   </Node>
 </Layouts>

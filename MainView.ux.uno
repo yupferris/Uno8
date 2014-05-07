@@ -10,16 +10,13 @@ public partial class MainView
 {
 	static readonly Key[] _keymap = new[] { Key.X, Key.D1, Key.D2, Key.D3, Key.Q, Key.W, Key.E, Key.A, Key.S, Key.D, Key.Z, Key.C, Key.D4, Key.R, Key.F, Key.V };
 	
-	readonly Chip8 _chip8;
-	
 	readonly EmulatorHost _host;
 	
     public MainView()
     {
         InitializeUX();
 		
-		_chip8 = new Chip8(Games.Get("15 Puzzle"));
-		_host = new EmulatorHost(_chip8);
+		_host = EmulatorHost1;
 		
 		Uno.Application.Current.Window.KeyDown += WindowKeyDown;
 		Uno.Application.Current.Window.KeyUp += WindowKeyUp;
@@ -56,7 +53,7 @@ public partial class MainView
 		for (int i = 0; i < _keymap.Length; i++)
 		{
 			if (key == _keymap[i])
-				_chip8.SetInput(i, value);
+				_host.Chip8.SetInput(i, value);
 		}
 	}
 }
