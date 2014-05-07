@@ -2925,5 +2925,16 @@ namespace Uno8
 				(byte)0x80, (byte)0x80, (byte)0x80, (byte)0x80, (byte)0x80, (byte)0x80, (byte)0x80, (byte)0x00,
 			}),
 		};
+		
+		public static Game GetGame(string title)
+		{
+			foreach (var game in All)
+			{
+				if (game.Title == title)
+					return game;
+			}
+			
+			throw new Exception("Could not find game: " + title);
+		}
 	}
 }

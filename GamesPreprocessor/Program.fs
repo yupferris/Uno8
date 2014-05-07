@@ -68,13 +68,15 @@ let main argv =
                 | _ -> ""
             w.WriteLine (prefix + s)
 
+        let lineIfNotEmpty (s : string) = if s.Length > 0 then line s
+
         let push s =
-            line s
+            lineIfNotEmpty s
             indent := !indent + 1
 
         let pop s =
             indent := !indent - 1
-            line s
+            lineIfNotEmpty s
 
         line "using Uno.Collections;"
         line ""
@@ -82,6 +84,7 @@ let main argv =
         push "{"
         line "public static class Games"
         push "{"
+
         line "public static readonly IEnumerable<Game> All = new[]"
         push "{"
 
@@ -123,6 +126,20 @@ let main argv =
         Array.iter printGame games
 
         pop "};"
+        line ""
+
+        line "public static Game GetGame(string title)"
+        push "{"
+        line "foreach (var game in All)"
+        push "{"
+        push "if (game.Title == title)"
+        line "return game;"
+        pop ""
+        pop "}"
+        line ""
+        line "throw new Exception(\"Could not find game: \" + title);"
+        pop "}"
+
         pop "}"
         pop "}"
 
