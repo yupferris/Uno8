@@ -1,5 +1,5 @@
 <Layouts>
-  <Node RefId="this" PanX="323" PanY="95" RootX="-42" RootY="22" Default="DockPanel1.Children">
+  <Node RefId="this" PanX="257" PanY="57" RootX="-42" RootY="22" Default="DockPanel1.Children">
     <Node RefId="AppStyle1" X="119.5" Y="36" />
     <Node RefId="Keypad1" X="560" Y="38.5" />
     <Node RefId="DockPanel1" X="119" Y="-29.5" />
@@ -9,12 +9,15 @@
     <Node RefId="TextBlock2" X="567" Y="89.5" />
     <Node RefId="uxid0" X="421" Y="37" />
     <Node RefId="uxid1" X="421" Y="101" />
-    <Node RefId="StackPanel4" X="561" Y="121.5" />
-    <Node RefId="StackPanel2" X="696" Y="104.5" />
-    <Node RefId="resetButton" X="694" Y="149.5" />
-    <Node RefId="TextBlock4" X="832" Y="81.5" />
-    <Node RefId="TextBox1" X="831" Y="124.5" />
+    <Node RefId="StackPanel4" X="561" Y="135.5" />
+    <Node RefId="resetButton" X="694" Y="85.5" />
     <Node RefId="DockPanel2" X="419" Y="178.5" />
     <Node RefId="TextBlock5" X="564" Y="175.5" />
+    <Node RefId="StackPanel2" X="686" Y="124.5" />
+    <Node RefId="slowCheckbox" X="815" Y="113.5" />
+    <Node RefId="TextBlock3" X="817" Y="135.5" />
+    <Node RefId="StackPanel3" X="687" Y="169.5" />
+    <Node RefId="fastCheckbox" X="813" Y="159.5" />
+    <Node RefId="TextBlock4" X="814" Y="181.5" />
   </Node>
 </Layouts>
