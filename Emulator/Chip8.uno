@@ -19,8 +19,13 @@ namespace Uno8.Emulator
 					return;
 				_game = value;
 				Reset();
+				
+				if (GameChanged != null)
+					GameChanged();
 			}
 		}
+		
+		public event Action GameChanged;
 
 		public int OutputWidth { get { return 64; } }
 		public int OutputHeight { get { return 32; } }
