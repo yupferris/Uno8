@@ -13,7 +13,7 @@ namespace Uno8
 		public readonly string Author;
 		public readonly string Info;
 		public readonly byte[] Data;
-		
+
 		public Game(string title, string author, string info, byte[] data)
 		{
 			Title = title;

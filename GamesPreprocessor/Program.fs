@@ -82,7 +82,7 @@ let main argv =
         push "{"
         line "public static class Games"
         push "{"
-        line "public static readonly IEnumerable<Game> = new[]"
+        line "public static readonly IEnumerable<Game> All = new[]"
         push "{"
 
         let printGame x =
@@ -93,7 +93,7 @@ let main argv =
                 | Some x -> stringLiteral x
                 | _ -> "null"
                 
-            line ("new Game(" + (stringLiteral x.Title) + ", " + (stringLiteral x.Title) + ", " + (stringLiteralOrNull x.Author) + ", " + (stringLiteralOrNull x.Info) + ", new[]")
+            line ("new Game(" + (stringLiteral x.Title) + ", " + (stringLiteralOrNull x.Author) + ", " + (stringLiteralOrNull x.Info) + ", new[]")
             push "{"
 
             let rec printDataLine startIndex =
@@ -118,11 +118,11 @@ let main argv =
                 
             printDataLine 0
 
-            pop "},"
+            pop "}),"
         
         Array.iter printGame games
 
-        pop "}"
+        pop "};"
         pop "}"
         pop "}"
 
