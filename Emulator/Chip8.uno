@@ -22,6 +22,9 @@ namespace Uno8.Emulator
 			}
 		}
 		
+		public int OutputWidth { get { return 64; } }
+		public int OutputHeight { get { return 32; } }
+		
 		static readonly byte[] _charMem = new[]
 		{
 			(byte)0xf0, (byte)0x90, (byte)0x90, (byte)0x90, (byte)0xf0, // 0
@@ -76,6 +79,8 @@ namespace Uno8.Emulator
 			for (int i = 0; i < 16; i++)
 				_inputs[i] = false;
 			// TODO: Reset gpu (and dummy update? wonder what that was for..)
+			for (int i = 0; i < Game.Data.Length; i++)
+				_ram[i + 0x200] = Game.Data[i];
 			_isWaitingForKeypress = false;
 		}
 		
