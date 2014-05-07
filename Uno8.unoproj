@@ -11,6 +11,7 @@
   <Files>
     <UxFile Path="MainView.ux" />
     <SourceFile Path="AppStyle.uno" />
+    <SourceFile Path="Game.uno" />
     <SourceFile Path="MainView.ux.uno" />
     <StartupFile Path="MainView.ux" />
   </Files>
