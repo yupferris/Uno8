@@ -57,7 +57,7 @@ let main argv =
 
         Array.map loadGame gameFileNames
 
-    let saveGames (games : Game array) (fileName : string) =
+    let saveGames games (fileName : string) =
         use w = new StreamWriter(fileName)
         let indent = ref 0
 
@@ -78,6 +78,7 @@ let main argv =
             indent := !indent - 1
             lineIfNotEmpty s
 
+        line "using Uno;"
         line "using Uno.Collections;"
         line ""
         line "namespace Uno8"
@@ -143,7 +144,7 @@ let main argv =
         pop "}"
         pop "}"
 
-    let games = loadGames argv.[0]
+    let games = loadGames argv.[0] |> Seq.take 5 |> Seq.toArray // Temp
     saveGames games argv.[1]
 
     0
