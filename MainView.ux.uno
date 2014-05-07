@@ -36,4 +36,9 @@ public partial class MainView
 				EmulatorHost1.Chip8.SetInput(i, value);
 		}
 	}
+	
+	void resetButton_Click(object a1, Uno.Scenes.SceneEventArgs a2)
+    {
+		EmulatorHost1.Chip8.Reset();
+    }
 }

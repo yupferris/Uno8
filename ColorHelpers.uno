@@ -13,10 +13,10 @@ namespace Uno8
 		{
 			return (float)c / 255.0f;
 		}
-		
-		public static float4 FromRgb(int r, int g, int b)
+
+		public static float4 FromRgb(int r, int g, int b, int a)
 		{
-			return float4(ConvertComponent(r), ConvertComponent(g), ConvertComponent(b), 1);
+			return float4(ConvertComponent(r), ConvertComponent(g), ConvertComponent(b), ConvertComponent(a));
 		}
 	}
 }

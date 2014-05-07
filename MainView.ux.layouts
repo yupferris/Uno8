@@ -1,13 +1,18 @@
 <Layouts>
-  <ViewportLayout Name="CustomLayout1">
-    <Window>
-      <DecoratedViewport DecoratorType="IPhone" />
-    </Window>
-  </ViewportLayout>
-  <Node RefId="this" PanX="92" PanY="75" RootX="-26" RootY="0" Default="DockPanel1.Children">
+  <Node RefId="this" PanX="-151" PanY="21" RootX="-42" RootY="22" Default="DockPanel1.Children">
     <Node RefId="AppStyle1" X="119.5" Y="36" />
-    <Node RefId="Keypad1" X="279" Y="4.5" />
+    <Node RefId="Keypad1" X="560" Y="38.5" />
     <Node RefId="DockPanel1" X="119" Y="-29.5" />
-    <Node RefId="EmulatorHost1" X="277" Y="-34.5" />
+    <Node RefId="EmulatorHost1" X="279" Y="-52.5" />
+    <Node RefId="StackPanel1" X="290" Y="75.5" />
+    <Node RefId="TextBlock1" X="563" Y="-0.5" />
+    <Node RefId="TextBlock2" X="567" Y="89.5" />
+    <Node RefId="uxid0" X="421" Y="37" />
+    <Node RefId="uxid1" X="421" Y="101" />
+    <Node RefId="StackPanel4" X="561" Y="121.5" />
+    <Node RefId="StackPanel2" X="696" Y="104.5" />
+    <Node RefId="resetButton" X="694" Y="149.5" />
+    <Node RefId="TextBlock4" X="832" Y="81.5" />
+    <Node RefId="TextBox1" X="831" Y="124.5" />
   </Node>
 </Layouts>
