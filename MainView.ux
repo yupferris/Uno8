@@ -1,6 +1,7 @@
 <Scene xmlns:ux="http://schemas.outracks.com/ux" xmlns:u="Uno8" ux:ClassName="MainView" AlwaysClear="false" ClearColor="0, 0, 0, 1" xmlns="Uno.Scenes, Uno.Styling, Uno.UI, Uno">
-  <StackPanel Orientation="Vertical" LocalZoom="1" Opacity="1" Color="0.9254902, 0.01568628, 0.01568628, 0" ux:Name="StackPanel1">
-    <u:Keypad ux:Name="Keypad1" />
-  </StackPanel>
+  <DockPanel ux:Name="DockPanel1">
+    <u:Keypad Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2, 2, 2, 2" ux:Name="Keypad1" />
+    <Button ux:Name="Button1" />
+  </DockPanel>
   <u:AppStyle ux:Name="AppStyle1" />
 </Scene>
