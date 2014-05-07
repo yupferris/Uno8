@@ -80,10 +80,10 @@ namespace Uno8.Emulator
 				_ram[i] = _charMem[i];
 			for (int i = 0; i < 16; i++)
 				_inputs[i] = false;
-			_gpu.Clear();
 			for (int i = 0; i < Game.Data.Length; i++)
 				_ram[i + 0x200] = Game.Data[i];
 			_isWaitingForKeypress = false;
+			_gpu.Clear();
 		}
 		
 		public void Update()
@@ -349,7 +349,7 @@ namespace Uno8.Emulator
 							{
 								// LD Vx, [I]
 								for (int j = 0; j <= x; j++)
-									_regs[j] = _ram[(_iReg + i) & 0xfff];
+									_regs[j] = _ram[(_iReg + j) & 0xfff];
 								_iReg = (ushort)((_iReg + x + 1) & 0xfff);
 							}
 							break;
