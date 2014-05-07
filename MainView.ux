@@ -1,31 +1,32 @@
 <Scene xmlns:ux="http://schemas.outracks.com/ux" xmlns:u="Uno8" ux:ClassName="MainView" AlwaysClear="true" ClearColor="0.03921569, 0.03921569, 0.03921569, 1" xmlns="Uno.Scenes, Uno.Styling, Uno.UI, Uno">
   <DockPanel ux:Name="DockPanel1">
     <StackPanel Orientation="Horizontal" Dock="Bottom" HorizontalAlignment="Center" ux:Name="StackPanel1">
-      <DockPanel Width="178" Height="160" Margin="0, 0, 4, 0" Color="0.03529412, 0.07058824, 0.09411765, 1" ux:Name="uxid0">
+      <DockPanel Width="258" Height="202" Margin="0, 0, 4, 0" Color="0.03529412, 0.07058824, 0.09411765, 1" ux:Name="uxid0">
         <TextBlock Text="KEYPAD" Dock="Top" Margin="2, 0, 0, 0" Color="1, 1, 1, 1" FontSize="12" ForegroundColor="1, 1, 1, 1" ux:Name="TextBlock1" />
         <u:Keypad Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0, 0, 0" ux:Name="Keypad1">
           <u:EmulatorHost ux:Binding="EmulatorHost" ux:AutoBind="false" Dock="Top" ux:Name="EmulatorHost1" />
         </u:Keypad>
       </DockPanel>
-      <DockPanel LastChildFill="true" Width="134" Height="160" VerticalAlignment="Stretch" Margin="0, 0, 4, 0" Color="0.1568628, 0.06666667, 0.04705882, 1" ux:Name="uxid1">
+      <DockPanel Width="442" Height="202" Margin="0, 0, 4, 0" Color="0.1333333, 0.1372549, 0.1019608, 1" ux:Name="DockPanel2">
+        <TextBlock Text="GAMES" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock5" />
+        <ScrollViewer ux:Name="gamesViewer" />
+      </DockPanel>
+      <DockPanel LastChildFill="true" Width="134" Height="202" VerticalAlignment="Stretch" Margin="0, 0, 4, 0" Color="0.1568628, 0.06666667, 0.04705882, 1" ux:Name="uxid1">
         <TextBlock Text="EMULATION" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock2" />
         <StackPanel Orientation="Vertical" ux:Name="StackPanel4">
           <Button Text="RESET" Height="30" Margin="2, 2, 2, 2" Click="resetButton_Click" ux:Name="resetButton" />
-          <StackPanel Orientation="Horizontal" Margin="2, 2, 2, 2" ux:Name="StackPanel2">
-            <CheckBox ux:Name="slowCheckbox" />
-            <TextBlock Text="SLOW" Margin="2, 2, 2, 2" ux:Name="TextBlock3" />
-          </StackPanel>
-          <StackPanel Orientation="Horizontal" Margin="2, 2, 2, 2" ux:Name="StackPanel3">
-            <CheckBox ux:Name="fastCheckbox" />
-            <TextBlock Text="FAST" Margin="2, 2, 2, 2" ux:Name="TextBlock4" />
-          </StackPanel>
         </StackPanel>
-      </DockPanel>
-      <DockPanel Width="442" Height="160" Color="0.1333333, 0.1372549, 0.1019608, 1" ux:Name="DockPanel2">
-        <TextBlock Text="GAMES" Margin="2, 0, 0, 2" ux:Name="TextBlock5" />
       </DockPanel>
     </StackPanel>
     <u:EmulatorHost ux:Ref="EmulatorHost1" />
   </DockPanel>
   <u:AppStyle ux:Name="AppStyle1" />
+  <StackPanel ux:AutoBind="false" Orientation="Horizontal" Margin="2, 2, 2, 2" ux:Name="StackPanel2">
+    <CheckBox ux:Name="slowCheckbox" />
+    <TextBlock Text="SLOW" Margin="2, 2, 2, 2" ux:Name="TextBlock3" />
+  </StackPanel>
+  <StackPanel ux:AutoBind="false" Orientation="Horizontal" Margin="2, 2, 2, 2" ux:Name="StackPanel3">
+    <CheckBox ux:Name="fastCheckbox" />
+    <TextBlock Text="FAST" Margin="2, 2, 2, 2" ux:Name="TextBlock4" />
+  </StackPanel>
 </Scene>

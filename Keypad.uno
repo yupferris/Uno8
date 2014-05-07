@@ -77,8 +77,8 @@ namespace Uno8
 					int keyIndex = keyIndices[k];
 
 					var key = new Button();
-					key.Width = 40.0f;
-					key.Height = 30.0f;
+					key.Width = 60.0f;
+					key.Height = 40.0f;
 					key.Margin = float4(2.0f);
 					key.Text = keyChar.ToString();
 
