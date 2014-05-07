@@ -14,6 +14,7 @@
     <SourceFile Path="Emulator/Gpu.uno" />
     <SourceFile Path="Emulator/Stack.uno" />
     <SourceFile Path="AppStyle.uno" />
+    <SourceFile Path="EmulatorHost.uno" />
     <SourceFile Path="Game.uno" />
     <SourceFile Path="Games.uno" />
     <SourceFile Path="MainView.ux.uno" />
