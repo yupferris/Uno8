@@ -1,7 +1,7 @@
-<Scene xmlns:ux="http://schemas.outracks.com/ux" xmlns:u="Uno8" ux:ClassName="MainView" AlwaysClear="false" ClearColor="0, 0, 0, 1" xmlns="Uno.Scenes, Uno.Styling, Uno.UI, Uno">
+<Scene xmlns:ux="http://schemas.outracks.com/ux" xmlns:u="Uno8" ux:ClassName="MainView" AlwaysClear="true" ClearColor="0.08627451, 0.08627451, 0.08627451, 1" xmlns="Uno.Scenes, Uno.Styling, Uno.UI, Uno">
   <DockPanel ux:Name="DockPanel1">
     <u:Keypad Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2, 2, 2, 2" ux:Name="Keypad1">
-      <u:EmulatorHost ux:Binding="EmulatorHost" ux:AutoBind="false" ux:Name="EmulatorHost1" />
+      <u:EmulatorHost ux:Binding="EmulatorHost" ux:AutoBind="false" Dock="Top" ux:Name="EmulatorHost1" />
     </u:Keypad>
     <u:EmulatorHost ux:Ref="EmulatorHost1" />
   </DockPanel>

@@ -26,8 +26,24 @@ namespace Uno8
 		
 		protected override void OnDraw(float2 origin)
 		{
-			int w = Math.Max((int)Math.Ceil(ActualSize.X), 1);
-			int h = Math.Max((int)Math.Ceil(ActualSize.Y), 1);
+			float ww = 64.0f;
+			float wh = 32.0f;
+			float aspect = ActualSize.X / ActualSize.Y;
+			float desiredAspect = ww / wh;
+			if (aspect >= desiredAspect)
+			{
+				ww *= ActualSize.Y / wh;
+				wh = ActualSize.Y;
+			}
+			else
+			{
+				wh *= ActualSize.X / ww;
+				ww = ActualSize.X;
+			}
+			
+			origin = origin + ActualSize / 2.0f - float2(ww, wh) / 2.0f;
+			int w = Math.Max((int)Math.Ceil(ww), 1);
+			int h = Math.Max((int)Math.Ceil(wh), 1);
 			
 			var tex = _chip8.CreateOutputTexture();
 			draw
