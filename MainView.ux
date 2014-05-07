@@ -4,12 +4,12 @@
       <DockPanel Width="258" Height="202" Margin="0, 0, 4, 0" Color="0.03529412, 0.07058824, 0.09411765, 1" ux:Name="uxid0">
         <TextBlock Text="KEYPAD" Dock="Top" Margin="2, 0, 0, 0" Color="1, 1, 1, 1" FontSize="12" ForegroundColor="1, 1, 1, 1" ux:Name="TextBlock1" />
         <u:Keypad Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0, 0, 0" ux:Name="Keypad1">
-          <u:EmulatorHost ux:Binding="EmulatorHost" ux:AutoBind="false" Dock="Top" ux:Name="EmulatorHost1" />
+          <u:EmulatorHost ux:Binding="EmulatorHost" ux:AutoBind="false" Dock="Top" Margin="0, 0, 0, 4" ux:Name="EmulatorHost1" />
         </u:Keypad>
       </DockPanel>
       <DockPanel Width="442" Height="202" Margin="0, 0, 4, 0" Color="0.1333333, 0.1372549, 0.1019608, 1" ux:Name="DockPanel2">
         <TextBlock Text="GAMES" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock5" />
-        <ScrollViewer CachingMode="Always" Margin="2, 2, 2, 2" Color="0, 0, 0, 0.2352941" ux:Name="ScrollViewer1">
+        <ScrollViewer CachingMode="Always" Margin="2, 2, 2, 3" Color="0, 0, 0, 0.2352941" ux:Name="ScrollViewer1">
           <StackPanel Margin="0, 0, 0, 0" Color="0, 0, 0, 0" ForegroundColor="1, 1, 1, 1" ux:Name="gamesContainer" />
         </ScrollViewer>
       </DockPanel>

@@ -144,7 +144,7 @@ let main argv =
         pop "}"
         pop "}"
 
-    let games = loadGames argv.[0] |> Seq.take 5 |> Seq.toArray // Temp
+    let games = loadGames argv.[0]// |> Seq.take 5 |> Seq.toArray
     saveGames games argv.[1]
 
     0
