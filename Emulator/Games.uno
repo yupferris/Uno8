@@ -1,7 +1,7 @@
 using Uno;
 using Uno.Collections;
 
-namespace Uno8
+namespace Uno8.Emulator
 {
 	public static class Games
 	{

@@ -5,7 +5,7 @@ using Uno.Scenes;
 using Uno.Content;
 using Uno.Content.Models;
 
-namespace Uno8
+namespace Uno8.Emulator
 {
 	public class Game
 	{

@@ -81,7 +81,7 @@ let main argv =
         line "using Uno;"
         line "using Uno.Collections;"
         line ""
-        line "namespace Uno8"
+        line "namespace Uno8.Emulator"
         push "{"
         line "public static class Games"
         push "{"

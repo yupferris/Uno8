@@ -24,7 +24,7 @@
     <DocumentationFile>bin\Debug\GamesPreprocessor.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
     <StartWorkingDirectory>C:\Users\Ferris\Documents\Realtime Studio\Projects\Uno8\GamesPreprocessor\</StartWorkingDirectory>
-    <StartArguments>Games ../Games.uno</StartArguments>
+    <StartArguments>Games ../Emulator/Games.uno</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,7 +37,7 @@
     <DocumentationFile>bin\Release\GamesPreprocessor.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
     <StartWorkingDirectory>C:\Users\Ferris\Documents\Realtime Studio\Projects\Uno8\GamesPreprocessor\</StartWorkingDirectory>
-    <StartArguments>Games ../Games.uno</StartArguments>
+    <StartArguments>Games ../Emulator/Games.uno</StartArguments>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

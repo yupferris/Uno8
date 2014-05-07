@@ -11,7 +11,6 @@ public partial class MainView
 	static readonly Key[] _keymap = new[] { Key.X, Key.D1, Key.D2, Key.D3, Key.Q, Key.W, Key.E, Key.A, Key.S, Key.D, Key.Z, Key.C, Key.D4, Key.R, Key.F, Key.V };
 	
 	readonly Chip8 _chip8;
-	public Chip8 Chip8 { get { return _chip8; } }
 	
 	readonly EmulatorHost _host;
 	
