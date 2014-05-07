@@ -16,6 +16,7 @@
     <SourceFile Path="Emulator/Gpu.uno" />
     <SourceFile Path="Emulator/Stack.uno" />
     <SourceFile Path="AppStyle.uno" />
+    <SourceFile Path="ColorHelpers.uno" />
     <SourceFile Path="EmulatorHost.uno" />
     <SourceFile Path="Keypad.uno" />
     <SourceFile Path="MainView.ux.uno" />
