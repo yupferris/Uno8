@@ -20,16 +20,18 @@ public partial class MainView
 	{
 		base.OnUpdate();
 		
-		
+		_chip8.Update();
 	}
 	
 	protected override void OnDraw()
 	{
 		base.OnDraw();
 		
+		var tex = _chip8.CreateOutputTexture();
 		draw Uno.Scenes.Primitives.Quad
 		{
-			PixelColor: float4(1, 0, 0, 1);
+			PixelColor: sample(tex, TexCoord, Uno.Graphics.SamplerState.NearestClamp);
 		};
+		tex.Dispose();
 	}
 }

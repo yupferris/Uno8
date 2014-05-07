@@ -81,7 +81,6 @@ namespace Uno8.Emulator
 			for (int i = 0; i < 16; i++)
 				_inputs[i] = false;
 			_gpu.Clear();
-			// TODO: _gpu.Update()?
 			for (int i = 0; i < Game.Data.Length; i++)
 				_ram[i + 0x200] = Game.Data[i];
 			_isWaitingForKeypress = false;
@@ -366,8 +365,6 @@ namespace Uno8.Emulator
 						break;
 				}
 			}
-			
-			_gpu.Update();
 		}
 		
 		public bool GetInput(int index)
@@ -378,6 +375,11 @@ namespace Uno8.Emulator
 		public void SetInput(int index, bool value)
 		{
 			_inputs[index & 0x0f] = value;
+		}
+		
+		public texture2D CreateOutputTexture()
+		{
+			return _gpu.CreateOutputTexture();
 		}
 		
 		void InvalidOpcode()
