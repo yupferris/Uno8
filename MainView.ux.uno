@@ -13,7 +13,7 @@ public partial class MainView
     {
         InitializeUX();
 		
-		_chip8 = new Chip8(Games.Get("Airplane"));
+		_chip8 = new Chip8(Games.Get("15 Puzzle"));
     }
 	
 	protected override void OnUpdate()

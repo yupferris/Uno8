@@ -21,10 +21,12 @@ namespace Uno8.Emulator
 				Reset();
 			}
 		}
-		
+
 		public int OutputWidth { get { return 64; } }
 		public int OutputHeight { get { return 32; } }
 		
+		public int Speed { get; set; }
+
 		static readonly byte[] _charMem = new[]
 		{
 			(byte)0xf0, (byte)0x90, (byte)0x90, (byte)0x90, (byte)0xf0, // 0
@@ -44,29 +46,28 @@ namespace Uno8.Emulator
 			(byte)0xf0, (byte)0x80, (byte)0xf0, (byte)0x80, (byte)0xf0, // e
 			(byte)0xf0, (byte)0x80, (byte)0xf0, (byte)0x80, (byte)0x80, // f
 		};
-		
+
 		readonly Gpu _gpu = new Gpu();
-		
+
 		readonly byte[] _regs = new byte[16];
 		readonly byte[] _ram = new byte[4096];
 		readonly Stack<ushort> _stack = new Stack<ushort>(16);
 		readonly bool[] _inputs = new bool[16];
-		
+
 		readonly Random _random = new Random(12345);
-		
-		int _speed = 20;
-		
+
 		ushort _pc;
 		ushort _iReg;
 		byte _timerDelay;
-		
+
 		bool _isWaitingForKeypress;
-		
+
 		public Chip8(Game game)
 		{
 			Game = game;
+			Speed = 20;
 		}
-		
+
 		public void Reset()
 		{
 			_pc = 0x200;
@@ -85,11 +86,11 @@ namespace Uno8.Emulator
 			_isWaitingForKeypress = false;
 			_gpu.Clear();
 		}
-		
+
 		public void Update()
 		{
 			int keyPressReg = 0;
-			for (int i = 0; i < _speed; i++)
+			for (int i = 0; i < Speed; i++)
 			{
 				if (_isWaitingForKeypress)
 				{
@@ -104,19 +105,19 @@ namespace Uno8.Emulator
 					}
 					continue;
 				}
-				
+
 				if (_pc >= 4095)
 					throw new Exception("PC out of bounds");
 				var opcode = (ushort)((_ram[_pc] << 8) | _ram[_pc + 1]);
 				_pc = (ushort)(_pc + 2);
-				
+
 				int h = (opcode >> 12) & 0x0f;
 				int x = (opcode >> 8) & 0x0f;
 				int y = (opcode >> 4) & 0x0f;
 				int n = opcode & 0x0f;
 				int nn = opcode & 0xff;
 				int nnn = opcode & 0x0fff;
-				
+
 				switch (h)
 				{
 					case 0:
@@ -139,7 +140,7 @@ namespace Uno8.Emulator
 							InvalidOpcode();
 						}
 						break;
-						
+
 					case 1:
 						// JP addr
 						_pc = (ushort)nnn;
@@ -366,22 +367,22 @@ namespace Uno8.Emulator
 				}
 			}
 		}
-		
+
 		public bool GetInput(int index)
 		{
 			return _inputs[index];
 		}
-		
+
 		public void SetInput(int index, bool value)
 		{
 			_inputs[index & 0x0f] = value;
 		}
-		
+
 		public texture2D CreateOutputTexture()
 		{
 			return _gpu.CreateOutputTexture();
 		}
-		
+
 		void InvalidOpcode()
 		{
 			throw new Exception("Invalid opcode");
