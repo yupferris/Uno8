@@ -174,7 +174,7 @@ namespace Uno8
 			}),
 		};
 		
-		public static Game GetGame(string title)
+		public static Game Get(string title)
 		{
 			foreach (var game in All)
 			{

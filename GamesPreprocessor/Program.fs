@@ -129,7 +129,7 @@ let main argv =
         pop "};"
         line ""
 
-        line "public static Game GetGame(string title)"
+        line "public static Game Get(string title)"
         push "{"
         line "foreach (var game in All)"
         push "{"
