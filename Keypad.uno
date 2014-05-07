@@ -11,7 +11,7 @@ namespace Uno8
 {
 	public class Keypad : StackPanel
 	{
-		public class KeyPointerHandler
+		class KeyPointerHandler
 		{
 			readonly Keypad _keypad;
 			readonly int _index;
