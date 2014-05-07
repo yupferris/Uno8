@@ -45,6 +45,7 @@ namespace Uno8.Emulator
 		readonly byte[] _regs = new byte[16];
 		readonly byte[] _ram = new byte[4096];
 		readonly Stack<ushort> _stack = new Stack<ushort>(16);
+		readonly bool[] _inputs = new bool[16];
 		
 		readonly Random _random = new Random(12345);
 		
@@ -52,6 +53,9 @@ namespace Uno8.Emulator
 		
 		ushort _pc;
 		ushort _iReg;
+		byte _timerDelay;
+		
+		bool _isWaitingForKeypress;
 		
 		public Chip8(Game game)
 		{
@@ -63,6 +67,20 @@ namespace Uno8.Emulator
 			_pc = 0x200;
 			for (int i = 0; i < 16; i++)
 				_regs[i] = 0;
+			_iReg = 0;
+			_timerDelay = 0;
+			for (int i = 0; i < 4096; i++)
+				_ram[i] = (byte)_random.NextInt(256);
+			for (int i = 0; i < 16 * 5; i++)
+				_ram[i] = _charMem[i];
+			for (int i = 0; i < 16; i++)
+				_inputs[i] = false;
+			// TODO: Reset gpu (and dummy update? wonder what that was for..)
+			_isWaitingForKeypress = false;
+		}
+		
+		public void Update()
+		{
 			
 		}
 	}
