@@ -3,8 +3,8 @@
 type Game =
     {
         Name : string;
-        Author : string;
-        Info : string;
+        Author : string option;
+        Info : string option;
         Data : byte array;
     }
     
@@ -16,52 +16,51 @@ let main argv =
     let allFileNames = Directory.GetFiles gamesDirName
 
     let gameExtension = "ch8"
-    let altGameTag = "(alt)"
     let infoExtension = "txt"
 
     let isGameFileName (x : string) = x.EndsWith gameExtension
-    let isAltGameFileName (x : string) = isGameFileName x && x.Contains altGameTag
     let isInfoFileName (x : string) = x.EndsWith infoExtension
 
     let gameFileNames = Array.filter isGameFileName allFileNames
-    let noAltGamefileNames = Array.filter (fun x -> not (isAltGameFileName x)) gameFileNames
-    let altGameFileNames = Array.filter isAltGameFileName gameFileNames
     let infoFileNames = Array.filter isInfoFileName allFileNames
 
-    let getAltGameTag (s : string) =
-        match s.Contains altGameTag with
-        | true -> Some altGameTag
-        | _ -> None
+    let getGame (fileName : string) =
+        let removeTag (s : string) (t : string option) =
+            match t with
+            | Some x -> (s.Replace (x, "")).Trim()
+            | _ -> s
 
-    let getAuthorTag (s : string) =
-        match s.Contains "[" && s.Contains "]" with
-        | true ->
-            let tagStart = s.IndexOf '['
-            let tagEnd = s.IndexOf ']' + 1
-            Some (s.Substring (tagStart, tagEnd - tagStart))
-        | _ -> None
+        let getAuthorTag (s : string) =
+            match s.Contains "[" && s.Contains "]" with
+            | true ->
+                let tagStart = s.IndexOf '[' - 1
+                let tagEnd = s.IndexOf ']' + 1
+                Some (s.Substring (tagStart, tagEnd - tagStart))
+            | _ -> None
 
-    let getAuthor (s : string) =
-        match getAuthorTag s with
-        | Some x -> Some (x.Substring (1, x.Length - 2))
-        | _ -> None
+        let removeAuthorTag (s : string) = s |> getAuthorTag |> removeTag s
 
-    let removeTag (s : string) (t : string option) =
-        match t with
-        | Some x -> (s.Replace (x, "")).Trim()
-        | _ -> s
+        let getTitle (s : string) = removeAuthorTag (Path.GetFileNameWithoutExtension s)
 
-    let removeAuthorTag (s : string) = removeTag s (getAuthorTag s)
-    let removeAltGameTag (s : string) = removeTag s (getAltGameTag s)
-    let removeTags s = removeAuthorTag (removeAltGameTag s)
+        let getAuthor (s : string) =
+            match getAuthorTag s with
+            | Some x -> Some (x.Substring (2, x.Length - 3))
+            | _ -> None
 
-    let getTitle (s : string) = removeTags (Path.GetFileNameWithoutExtension s)
+        let getInfo (s : string) =
+            let title = getTitle s
+            match Array.tryFind (fun (x : string) -> x.Contains title) infoFileNames with
+            | Some x -> Some (File.ReadAllText x)
+            | _ -> None
 
-    let games =
-        seq {
-            
+        {
+            Name = getTitle fileName;
+            Author = getAuthor fileName;
+            Info = getInfo fileName;
+            Data = File.ReadAllBytes fileName;
         }
-
-    printfn "%A" (Array.map getTitle gameFileNames)
+        
+    let games = Array.map getGame gameFileNames
+    printfn "%A" games
 
     0

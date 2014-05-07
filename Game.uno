@@ -9,14 +9,14 @@ namespace Uno8
 {
 	public class Game
 	{
-		public readonly string Name;
+		public readonly string Title;
 		public readonly string Author;
 		public readonly string Info;
 		public readonly byte[] Data;
 		
-		public Game(string name, string author, string info, byte[] data)
+		public Game(string title, string author, string info, byte[] data)
 		{
-			Name = name;
+			Title = title;
 			Author = author ?? "Unknown Author";
 			Info = info ?? "No additional info.";
 			Data = data;
