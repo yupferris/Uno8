@@ -1,4 +1,5 @@
-﻿open System.IO
+﻿open System
+open System.IO
 
 type Game =
     {
@@ -94,6 +95,26 @@ let main argv =
                 
             line ("new Game(" + (stringLiteral x.Title) + ", " + (stringLiteral x.Title) + ", " + (stringLiteralOrNull x.Author) + ", " + (stringLiteralOrNull x.Info) + ", new[]")
             push "{"
+
+            let rec printDataLine startIndex =
+                let lineLength = 10
+
+                for i in 0 .. lineLength do
+                    let serializeByte index =
+                        match index with
+                        | n when n < x.Data.Length ->
+                            "(byte)0x" + x.Data.[n].ToString("x2") + "," +
+                                match n with
+                                | n when n <> lineLength - 1 -> " "
+                                | _ -> ""
+                        | _ -> ""
+                    startIndex + i |> serializeByte |> line
+
+                let nextIndex = startIndex + lineLength
+                if nextIndex < x.Data.Length then
+                    printDataLine nextIndex
+                
+            printDataLine 0
 
             pop "},"
         
