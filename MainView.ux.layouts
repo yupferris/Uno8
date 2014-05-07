@@ -1,0 +1,11 @@
+<Layouts>
+  <ViewportLayout Name="CustomLayout1">
+    <Window>
+      <DecoratedViewport DecoratorType="IPhoneLandscape" />
+    </Window>
+  </ViewportLayout>
+  <Node RefId="this" PanX="100" PanY="100" RootX="-26" RootY="0" Default="StackPanel1.Children">
+    <Node RefId="AppStyle1" X="174.5" Y="45" />
+    <Node RefId="StackPanel1" X="170" Y="-42" />
+  </Node>
+</Layouts>

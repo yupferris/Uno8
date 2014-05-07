@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project>
+  <References>
+    <PackageReference Name="Uno.Content.Utilities" />
+    <PackageReference Name="Uno.Designer" />
+    <PackageReference Name="Uno.Scenes" />
+    <PackageReference Name="Uno.Styling" />
+    <PackageReference Name="Uno.Tweening" />
+    <PackageReference Name="Uno.UI" />
+  </References>
+  <Files>
+    <UxFile Path="MainView.ux" />
+    <SourceFile Path="AppStyle.uno" />
+    <SourceFile Path="MainView.ux.uno" />
+    <StartupFile Path="MainView.ux" />
+  </Files>
+</Project>

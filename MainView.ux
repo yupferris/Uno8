@@ -1,0 +1,4 @@
+<Scene xmlns:ux="http://schemas.outracks.com/ux" xmlns:u="Uno8" ux:ClassName="MainView" ClearColor="0, 0, 0, 1" xmlns="Uno.Scenes, Uno.Styling, Uno.UI, Uno">
+  <StackPanel Orientation="Horizontal" LocalZoom="1" Opacity="1" Color="0.9254902, 0.01568628, 0.01568628, 0" ux:Name="StackPanel1" />
+  <u:AppStyle ux:Name="AppStyle1" />
+</Scene>
