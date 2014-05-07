@@ -1,4 +1,3 @@
-
 using Uno;
 using Uno.Collections;
 using Uno.Scenes;
@@ -10,5 +9,14 @@ public partial class MainView
     {
         InitializeUX();
     }
+	
+	protected override void OnDraw()
+	{
+		base.OnDraw();
+		
+		draw Uno.Scenes.Primitives.Quad
+		{
+			PixelColor: float4(1, 0, 0, 1);
+		};
+	}
 }
-      
