@@ -2,7 +2,7 @@
 
 type Game =
     {
-        Name : string;
+        Title : string;
         Author : string option;
         Info : string option;
         Data : byte array;
@@ -44,22 +44,64 @@ let main argv =
             let getInfo s =
                 let title = getTitle s
                 match Array.tryFind (fun (x : string) -> x.Contains title) infoFileNames with
-                | Some x -> Some (File.ReadAllText x)
+                | Some x -> Some ((File.ReadAllText x).Replace("\n", "\\n").Replace("\r", ""))
                 | _ -> None
 
             {
-                Name = getTitle fileName;
+                Title = getTitle fileName;
                 Author = getAuthor fileName;
                 Info = getInfo fileName;
                 Data = File.ReadAllBytes fileName;
             }
 
-        Array.map loadGame gamefileNames
+        Array.map loadGame gameFileNames
 
     let saveGames (games : Game array) (fileName : string) =
         use w = new StreamWriter(fileName)
+        let indent = ref 0
 
-        let line s = w.WriteLine s
+        let line s =
+            let prefix =
+                match !indent with
+                | n when n > 0 -> Array.reduce (fun (s1 : string) (s2 : string) -> s1 + s2) (Array.create !indent "\t")
+                | _ -> ""
+            w.WriteLine (prefix + s)
+
+        let push s =
+            line s
+            indent := !indent + 1
+
+        let pop s =
+            indent := !indent - 1
+            line s
+
+        line "using Uno.Collections"
+        line ""
+        line "namespace Uno8"
+        push "{"
+        line "public static class Games"
+        push "{"
+        line "public static readonly IEnumerable<Game> = new[]"
+        push "{"
+
+        let printGame x =
+            let stringLiteral s = "\"" + s + "\""
+                
+            let stringLiteralOrNull s =
+                match s with
+                | Some x -> stringLiteral x
+                | _ -> "null"
+                
+            line ("new Game(" + (stringLiteral x.Title) + ", " + (stringLiteral x.Title) + ", " + (stringLiteralOrNull x.Author) + ", " + (stringLiteralOrNull x.Info) + ", new[]")
+            push "{"
+
+            pop "},"
+        
+        Array.iter printGame games
+
+        pop "}"
+        pop "}"
+        pop "}"
 
     let games = loadGames argv.[0]
     saveGames games argv.[1]
