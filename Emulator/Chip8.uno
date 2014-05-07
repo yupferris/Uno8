@@ -19,17 +19,17 @@ namespace Uno8.Emulator
 					return;
 				_game = value;
 				Reset();
-				
+
 				if (GameChanged != null)
 					GameChanged();
 			}
 		}
-		
+
 		public event Action GameChanged;
 
 		public int OutputWidth { get { return 64; } }
 		public int OutputHeight { get { return 32; } }
-		
+
 		public int Speed { get; set; }
 
 		static readonly byte[] _charMem = new[]
@@ -88,6 +88,7 @@ namespace Uno8.Emulator
 				_inputs[i] = false;
 			for (int i = 0; i < Game.Data.Length; i++)
 				_ram[i + 0x200] = Game.Data[i];
+			_stack.Clear();
 			_isWaitingForKeypress = false;
 			_gpu.Clear();
 		}

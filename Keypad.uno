@@ -80,7 +80,6 @@ namespace Uno8
 					key.Width = 40.0f;
 					key.Height = 30.0f;
 					key.Margin = float4(2.0f);
-					key.Color = ColorHelpers.FromRgb(255, 255, 255, 30);
 					key.Text = keyChar.ToString();
 
 					new KeyPointerHandler(this, keyIndex, key);

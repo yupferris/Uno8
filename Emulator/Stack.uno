@@ -33,5 +33,10 @@ namespace Uno8.Emulator
 			_pos--;
 			return _items[_pos];
 		}
+		
+		public void Clear()
+		{
+			_pos = 0;
+		}
 	}
 }
