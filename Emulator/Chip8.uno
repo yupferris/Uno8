@@ -158,7 +158,7 @@ namespace Uno8.Emulator
 
 					case 5:
 						if (n != 0)
-							invalidOpcode();
+							InvalidOpcode();
 
 						// SE Vx, Vy
 						if (_regs[x] == _regs[y])
@@ -232,7 +232,7 @@ namespace Uno8.Emulator
 							break;
 
 						default:
-							invalidOpcode();
+							InvalidOpcode();
 						}
 						break;
 
@@ -277,7 +277,7 @@ namespace Uno8.Emulator
 						}
 						else
 						{
-							invalidOpcode();
+							InvalidOpcode();
 						}
 						break;
 
@@ -348,12 +348,12 @@ namespace Uno8.Emulator
 							break;
 
 						default:
-							invalidOpcode();
+							InvalidOpcode();
 						}
 						break;
 
 					default:
-						invalidOpcode();
+						InvalidOpcode();
 				}
 			}
 		}
