@@ -9,7 +9,9 @@
       </DockPanel>
       <DockPanel Width="442" Height="202" Margin="0, 0, 4, 0" Color="0.1333333, 0.1372549, 0.1019608, 1" ux:Name="DockPanel2">
         <TextBlock Text="GAMES" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock5" />
-        <ScrollViewer ux:Name="gamesViewer" />
+        <ScrollViewer CachingMode="Always" Margin="2, 2, 2, 2" Color="0, 0, 0, 0.2352941" ux:Name="ScrollViewer1">
+          <StackPanel Margin="0, 0, 0, 0" Color="0, 0, 0, 0" ForegroundColor="1, 1, 1, 1" ux:Name="gamesContainer" />
+        </ScrollViewer>
       </DockPanel>
       <DockPanel LastChildFill="true" Width="134" Height="202" VerticalAlignment="Stretch" Margin="0, 0, 4, 0" Color="0.1568628, 0.06666667, 0.04705882, 1" ux:Name="uxid1">
         <TextBlock Text="EMULATION" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock2" />
