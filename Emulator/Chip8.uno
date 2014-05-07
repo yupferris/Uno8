@@ -10,7 +10,7 @@ namespace Uno8.Emulator
 	public class Chip8
 	{
 		Game _game;
-		public Game
+		public Game Game
 		{
 			get { return _game; }
 			set
@@ -42,17 +42,28 @@ namespace Uno8.Emulator
 			(byte)0xf0, (byte)0x80, (byte)0xf0, (byte)0x80, (byte)0x80, // f
 		};
 		
-		readonly Random _random = new Random(12345);
+		readonly byte[] _regs = new byte[16];
 		readonly byte[] _ram = new byte[4096];
 		readonly Stack<ushort> _stack = new Stack<ushort>(16);
 		
+		readonly Random _random = new Random(12345);
+		
 		int _speed = 20;
+		
+		ushort _pc;
+		ushort _iReg;
 		
 		public Chip8(Game game)
 		{
 			Game = game;
 		}
 		
-		
+		public void Reset()
+		{
+			_pc = 0x200;
+			for (int i = 0; i < 16; i++)
+				_regs[i] = 0;
+			
+		}
 	}
 }

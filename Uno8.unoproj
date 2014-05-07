@@ -11,6 +11,7 @@
   <Files>
     <UxFile Path="MainView.ux" />
     <SourceFile Path="Emulator/Chip8.uno" />
+    <SourceFile Path="Emulator/Stack.uno" />
     <SourceFile Path="AppStyle.uno" />
     <SourceFile Path="Game.uno" />
     <SourceFile Path="Games.uno" />

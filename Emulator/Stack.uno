@@ -10,28 +10,28 @@ namespace Uno8.Emulator
 	public class Stack<T>
 	{
 		readonly T[] _items;
-		
+
 		int _pos = 0;
-		
+
 		public Stack(int size)
 		{
 			_items = new T[size];
 		}
-		
+
 		public void Push(T item)
 		{
-			if (pos >= size)
+			if (_pos >= _items.Length)
 				throw new Exception("Stack overflow occurred");
-			_items[pos] = item;
-			pos++;
+			_items[_pos] = item;
+			_pos++;
 		}
-		
+
 		public T Pop()
 		{
-			if (pos < 1)
+			if (_pos < 1)
 				throw new Exception("Stack underflow occurred");
-			pos--;
-			return _items[pos];
+			_pos--;
+			return _items[_pos];
 		}
 	}
 }
