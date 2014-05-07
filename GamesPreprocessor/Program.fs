@@ -97,18 +97,20 @@ let main argv =
             push "{"
 
             let rec printDataLine startIndex =
-                let lineLength = 10
+                let lineLength = 16
 
-                for i in 0 .. lineLength do
-                    let serializeByte index =
-                        match index with
-                        | n when n < x.Data.Length ->
-                            "(byte)0x" + x.Data.[n].ToString("x2") + "," +
-                                match n with
-                                | n when n <> lineLength - 1 -> " "
-                                | _ -> ""
-                        | _ -> ""
-                    startIndex + i |> serializeByte |> line
+                line
+                    (Array.reduce
+                        (fun (s1 : string) (s2 : string) -> s1 + s2)
+
+                        [|for i in 0 .. lineLength - 1 ->
+                            match startIndex + i with
+                            | n when n < x.Data.Length ->
+                                "(byte)0x" + x.Data.[n].ToString("x2") + "," +
+                                    match i with
+                                    | n when i <> lineLength - 1 -> " "
+                                    | _ -> ""
+                            | _ -> ""|])
 
                 let nextIndex = startIndex + lineLength
                 if nextIndex < x.Data.Length then
