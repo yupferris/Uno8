@@ -64,7 +64,7 @@ let main argv =
         let line s =
             let prefix =
                 match !indent with
-                | n when n > 0 -> Array.reduce (fun x y -> x + y) (Array.create !indent "\t")
+                | n when n > 0 -> Array.reduce (+) (Array.create !indent "\t")
                 | _ -> ""
             w.WriteLine (prefix + s)
 
@@ -105,7 +105,7 @@ let main argv =
 
                 line
                     (Array.reduce
-                        (fun x y -> x + y)
+                        (+)
 
                         [|for i in 0 .. lineLength - 1 ->
                             match startIndex + i with
