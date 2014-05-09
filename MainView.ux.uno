@@ -12,21 +12,21 @@ public partial class MainView
 	{
 		readonly EmulatorHost _host;
 		readonly Game _game;
-		
+
 		public GameButtonHandler(EmulatorHost host, Game game, Button button)
 		{
 			_host = host;
 			_game = game;
-			
-			button.Click += ButtonClicked;
+
+			button.PointerTapped += ButtonClicked;
 		}
-		
+
 		void ButtonClicked(object sender, SceneEventArgs args)
 		{
 			_host.Chip8.Game = _game;
 		}
 	}
-	
+
 	static readonly Key[] _keymap = new[] { Key.X, Key.D1, Key.D2, Key.D3, Key.Q, Key.W, Key.E, Key.A, Key.S, Key.D, Key.Z, Key.C, Key.D4, Key.R, Key.F, Key.V };
 
     public MainView()
@@ -35,18 +35,18 @@ public partial class MainView
 
 		Uno.Application.Current.Window.KeyDown += WindowKeyDown;
 		Uno.Application.Current.Window.KeyUp += WindowKeyUp;
-		
+
 		foreach (var game in Games.All)
 		{
 			var b = new Button();
-			
+
 			b.HorizontalContentAlignment = HorizontalAlignment.Left;
 			b.Height = 24.0f;
 			b.Margin = float4(0, 0, 0, 2.0f);
 			b.Text = game.Title;
-			
+
 			new GameButtonHandler(EmulatorHost1, game, b);
-			
+
 			gamesContainer.Children.Add(b);
 		}
     }

@@ -16,7 +16,7 @@
       <DockPanel LastChildFill="true" Width="134" Height="202" VerticalAlignment="Stretch" Margin="0, 0, 4, 0" Color="0.1568628, 0.06666667, 0.04705882, 1" ux:Name="uxid1">
         <TextBlock Text="EMULATION" Dock="Top" Margin="2, 0, 0, 2" ux:Name="TextBlock2" />
         <StackPanel Orientation="Vertical" ux:Name="StackPanel4">
-          <Button Text="RESET" Height="30" Margin="2, 2, 2, 2" Click="resetButton_Click" ux:Name="resetButton" />
+          <Button Text="RESET" Height="30" Margin="2, 2, 2, 2" PointerTapped="resetButton_Click" ux:Name="resetButton" />
         </StackPanel>
       </DockPanel>
     </StackPanel>
